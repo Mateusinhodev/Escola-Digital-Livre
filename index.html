@@ -50,15 +50,21 @@
                 </span>
             </a>
 
-            <nav class="main-nav" class="ativo">
+            <nav class="main-nav">
+                <!-- Correção: antes havia dois atributos "class" aqui. O navegador só lê o primeiro,
+                     e quem liga/desliga a classe "ativo" é o JavaScript. -->
                 <!-- Tag semântica para o menu de navegação -->
 
                 <a href="index.html" class="nav-link active">Inicio</a>
                 <!-- a (link) para navegação | href é o caminho da página | "active" destaca a página atual -->
 
                 <a href="./cursos.html" class="nav-link">Cursos</a>
-                <a href="#" class="nav-link">Sobre</a>
-                <a href="#" class="nav-link">Contato</a>
+                <a href="./sobre.html" class="nav-link">Sobre</a>
+                <a href="./contato.html" class="nav-link">Contato</a>
+
+                <!-- Link que só aparece no menu do CELULAR
+                     (no celular, o botão "Começar agora" fica escondido) -->
+                <a href="./entrar.html" class="nav-link nav-link-mobile">Entrar / Cadastrar</a>
             </nav>
 
             <div class="header-actions">
@@ -72,12 +78,17 @@
                     <!-- Ícone da lupa (Material Symbols): não depende mais de arquivo na pasta assets -->
                 </div>
 
-                <button class="btn-primary">Começar agora</button>
-                <!-- Botões para ações na página -->
+                <!-- PASSO 6: saudação ao aluno logado. Começa escondida (hidden);
+                     o JavaScript escreve "Olá, Nome!" e mostra quando há alguém logado -->
+                <span class="user-greeting" id="saudacao" hidden></span>
+
+                <a href="./entrar.html" class="btn-primary">Começar agora</a>
+                <!-- Antes era um <button>. Virou um link <a> com a MESMA classe (mesma aparência),
+                     porque agora ele precisa LEVAR o usuário para a página de login (entrar.html) -->
             </div>
 
             <!-- Botão do menu hamburguer (funciona apenas para mobile) -->
-            <button" class="hamburguer" id="btn-menu">☰</button>
+            <button class="hamburguer" id="btn-menu">☰</button>
         </div>
     </header>
 
@@ -425,8 +436,8 @@
                 <ul>
                     <li><a href="index.html">Início</a></li>
                     <li><a href="./cursos.html">Cursos</a></li>
-                    <li><a href="#">Sobre</a></li>
-                    <li><a href="#">Contato</a></li>
+                    <li><a href="./sobre.html">Sobre</a></li>
+                    <li><a href="./contato.html">Contato</a></li>
                 </ul>
             </div>
 
@@ -435,7 +446,7 @@
                 <h4>Links úteis</h4>
                 <ul>
                     <li><a href="#por-que">Como funciona</a></li>
-                    <li><a href="#">Perguntas frequentes</a></li>
+                    <li><a href="./contato.html#faq">Perguntas frequentes</a></li>
                     <li><a href="#">Política de privacidade</a></li>
                     <li><a href="#">Termos de uso</a></li>
                 </ul>
@@ -471,6 +482,13 @@
         </p>
     </footer>
 
+    <!-- 1º) Biblioteca do Supabase (baixada da internet pelo CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- 2º) Nossa conexão com o projeto no Supabase -->
+    <script src="js/supabase-config.js"></script>
+
+    <!-- 3º) Nosso script (precisa vir POR ÚLTIMO, pois usa os dois de cima) -->
     <script src="js/script.js"></script>
 </body>
 </html>
